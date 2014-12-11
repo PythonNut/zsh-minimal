@@ -1,3 +1,16 @@
+ZDOTDIR=~/.zsh.d
+
+# set zshrc to this file
+zstyle :compinstall filename '~/.zshrc'
+
+# skip global compinit as we'll call it ourselves in a moment
+skip_global_compinit=1
+
+# add extra completion functions
+fpath=($ZDOTDIR/completers $fpath)
+
+autoload -Uz compinit  && compinit -d $ZDOTDIR/zcompdump
+
 ## ====================
 ## Section 1 -- Options
 ## ====================
