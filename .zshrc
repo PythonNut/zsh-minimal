@@ -197,6 +197,7 @@ setopt notify
 
 ## navigation
 
+
 # Just type a directory to cd to it
 setopt auto_cd
 
@@ -234,3 +235,13 @@ setopt csh_junkie_loops
 # Continue loading this init file, even if it contains syntax errors.
 # This is probably due to old versions of zsh
 setopt continue_on_error
+
+# =======================
+# Section 2 -- The Prompt
+# =======================
+
+# show the last error code and highlight root in red
+PS1=$'%{%F{red}%}%(?..Error: (%?%)\n)%F{default}[%{%B%(!.%F{red}.%F{black})%}'
+
+# username, reset decorations, pwd
+PS1=$PS1$'%n%b%F{default} %~'"$((($SHLVL > 1))&&echo ' <%L>')]%# "
