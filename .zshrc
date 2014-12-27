@@ -395,7 +395,6 @@ if (( $+commands[git] )); then
     alias gca!='git commit -v -a --amend'
 
     alias gck='git checkout'
-    alias -ec gfork='echo git checkout -b {} ${${(f)vcs_raw_data}[4]}'
 
     alias gb='git branch'
     alias gm='git merge -X patience --no-ff'
