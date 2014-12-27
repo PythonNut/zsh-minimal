@@ -249,8 +249,27 @@ setopt csh_junkie_loops
 # This is probably due to old versions of zsh
 setopt continue_on_error
 
+# ================================
+# Section 2 -- Persistent dirstack
+# ================================
+
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
+touch $ZDOTDIR/zdirs
+
+zstyle ':chpwd:*' recent-dirs-max 100
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-pushd true
+zstyle ':chpwd:*' recent-dirs-file "$ZDOTDIR/zdirs"
+
+dirstack=(${(nu@Q)$(<$ZDOTDIR/zdirs)})
+
+zstyle ':completion:*:cdr:*' verbose true
+zstyle ':completion:*:cdr:*' extra-verbose true
+
 # =======================
-# Section 2 -- The Prompt
+# Section 3 -- The Prompt
 # =======================
 
 # show the last error code and highlight root in red
@@ -260,7 +279,7 @@ PS1=$'%{%F{red}%}%(?..Error: (%?%)\n)%F{default}[%{%B%(!.%F{red}.%F{black})%}'
 PS1=$PS1$'%n%b%F{default} %~'"$((($SHLVL > 1))&&echo ' <%L>')]%# "
 
 # ====================
-# Section 3 -- Aliases
+# Section 4 -- Aliases
 # ====================
 
 typeset -A global_abbrevs command_abbrevs
@@ -489,7 +508,7 @@ bindkey "^ " magic-space
 bindkey -M isearch " " magic-space
 
 # ================================
-# Section 4 -- Syntax Highlighting
+# Section 5 -- Syntax Highlighting
 # ================================
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
@@ -520,7 +539,7 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=default,bold'
 
 # ===============================
-# Section 5 -- FASD teleportation
+# Section 6 -- FASD teleportation
 # ===============================
 
 function {
@@ -552,7 +571,7 @@ alias sf='fasd -sif'
 alias j='fasd -e cd -d'
 
 # ===========================
-# Section 6 -- the go command
+# Section 7 -- the go command
 # ===========================
 
 alias -E go="nocorrect go"
