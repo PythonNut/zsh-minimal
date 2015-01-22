@@ -253,7 +253,7 @@ setopt continue_on_error
 # Section 2 -- Persistent dirstack
 # ================================
 
-autoload -Uz chpwd_recent_dirs cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
 touch $ZDOTDIR/zdirs
@@ -386,13 +386,8 @@ fi
 
 # yum aliases
 if (( $+commands[yum] )); then
-    if (( $user_has_root == 1 )); then
-        alias -E yum-config-manager='nocorrect noglob \yum-config-manager'
-        alias -E yum='nocorrect noglob \yum'
-    else
-        alias -E yum-config-manager='nocorrect noglob sudo \yum-config-manager'
-        alias -E yum='nocorrect noglob sudo \yum'
-    fi
+    alias -E yum-config-manager='nocorrect noglob \yum-config-manager'
+    alias -E yum='nocorrect noglob \yum'
 fi
 
 # git aliases
