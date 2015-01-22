@@ -464,3 +464,11 @@ function go() {
         return 1
     fi
 }
+
+# =============================
+# Section 8 -- history settings
+# =============================
+
+HISTFILE=~/.zsh.d/histfile
+HISTSIZE=50000
+SAVEHIST=50000
