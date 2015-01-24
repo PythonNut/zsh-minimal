@@ -7,3 +7,6 @@ An almost literate zsh config, targeted at:
 * Root accounts, where magic can be very dangerous
 * Remote machines, where network bits are precious
 * People who like minimalism
+
+
+This config is **deprecated** please use my regular [`zsh-config`](http://github.com/PythonNut/zsh-config) with the `zsh_minimal_init` option.
